@@ -10,6 +10,7 @@ class MenuIniciar(MenuTemplate):
             [sg.Button('Remover Depesa')],
             [sg.Button('Consultar Despesas')]
         ]
+        self.choice = 0
 
         self.window = sg.Window(title=title, layout=layout)
 
@@ -17,7 +18,23 @@ class MenuIniciar(MenuTemplate):
         event, values = self.window.read()
 
         if event == sg.WIN_CLOSED:
-            MenuTemplate.running = False
+            self.running = False
+            self.choice = -1
+
+        if event == 'Adicionar Despesa':
+            self.choice = 1
+
+        if event == 'Remover Depesa':
+            self.choice = 2
+
+        if event == 'Consultar Despesas':
+            self.choice = 3
+
+        if self.choice != 0:
+            self.running = False
+
+    def take_choice(self):
+        return self.choice
 
 
 if __name__ == '__main__':
