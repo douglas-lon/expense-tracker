@@ -5,7 +5,18 @@ from menu_remover import (MenuRemoverPesquisa,
                           MenuRemoverConta)
 from menu_consultar import MenuConsultar
 
-def runMain():
+from sqlalchemy import (create_engine, 
+                        Column, Integer, 
+                        String)
+from sqlalchemy.orm import sessionmaker
+
+
+
+engine = create_engine('sqlite:///lite.db', echo=True)
+Session = sessionmaker(bind=engine)
+session = Session()
+
+def runMain(eng, ses):
     choice = 0
 
     while True:
@@ -51,4 +62,4 @@ def runMain():
 
 
 if __name__ == '__main__':
-    runMain()
+    runMain(engine, session)
