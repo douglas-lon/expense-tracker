@@ -16,6 +16,12 @@ class ContaOriginal(Base):
     local = Column(String(100), nullable=False)
     parcelas = Column(Integer, nullable=False)
 
+    def __repr__(self):
+        return f'<ContaOriginal(nome={self.nome},valor={self.valor},'\
+               f' data={self.data}, local={self.local},'\
+               f' parcelas={self.parcelas})>'
+
+
 class ContaMudanca(Base):
     __tablename__ = 'contamudanca'
 
@@ -25,6 +31,11 @@ class ContaMudanca(Base):
     data = Column(Date, nullable=False)
     local = Column(String(100), nullable=False)
     parcelas = Column(Integer, nullable=False)
+
+    def __repr__(self):
+        return f'<ContaMudanca(nome={self.nome},valor={self.valor},'\
+               f' data={self.data}, local={self.local},'\
+               f' parcelas={self.parcelas})>'
 
 
 class ContaHistorico(Base):
@@ -37,6 +48,10 @@ class ContaHistorico(Base):
     local = Column(String(100), nullable=False)
     parcelas = Column(Integer, nullable=False)
 
+    def __repr__(self):
+        return f'<ContaHistorico(nome={self.nome},valor={self.valor},'\
+               f' data={self.data}, local={self.local},'\
+               f' parcelas={self.parcelas})>'
 
 
 if __name__ == '__main__':

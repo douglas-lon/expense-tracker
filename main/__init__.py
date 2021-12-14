@@ -12,7 +12,7 @@ from sqlalchemy.orm import sessionmaker
 
 
 
-engine = create_engine('sqlite:///lite.db', echo=True)
+engine = create_engine('sqlite:///main/lite.db', echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 
@@ -27,7 +27,7 @@ def runMain(eng, ses):
                 mi.run(mi.window)
                 choice = mi.take_choice()
             case 1:
-                ma = MenuAdicionar()
+                ma = MenuAdicionar(ses)
                 ma.run(ma.window)
                 choice = ma.take_choice()
             case 2:
@@ -59,6 +59,9 @@ def runMain(eng, ses):
                 choice = mc.take_choice()
             case _:
                 break
+    
+    ses.close()
+    eng.dispose()
 
 
 if __name__ == '__main__':
