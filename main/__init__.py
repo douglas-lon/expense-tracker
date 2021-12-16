@@ -32,7 +32,7 @@ def runMain(eng, ses):
                 choice = ma.take_choice()
             case 2:
                 # Inicia com o menu de pesquisa
-                mrp = MenuRemoverPesquisa()
+                mrp = MenuRemoverPesquisa(ses)
                 mrp.run(mrp.window)
                 name = mrp.take_name()
                 choice = mrp.take_choice()
@@ -50,7 +50,7 @@ def runMain(eng, ses):
                     break
                 
                 # Menu para pagar a conta escolhida
-                mrc = MenuRemoverConta(conta)
+                mrc = MenuRemoverConta(conta, ses)
                 mrc.run(mrc.window)
                 choice = mrc.take_choice()
             case 3:

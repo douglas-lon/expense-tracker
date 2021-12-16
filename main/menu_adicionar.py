@@ -20,7 +20,7 @@ class MenuAdicionar(MenuTemplate):
                 sg.In(f'{date.today().strftime("%d/%m/%Y")}', key='data', 
                        readonly=True, 
                        disabled_readonly_background_color='white', 
-                       border_width=0)
+                       border_width=0, size=(10,1))
             ],
             [sg.Text('Local: ', size=(12,1)), sg.InputText(key='local')],
             [
@@ -57,13 +57,20 @@ class MenuAdicionar(MenuTemplate):
                 if value != 'Calendário':
 
                     if value == 'data':
-                        resultados.append(validate_type(values.get(value), self.tipos[i], datetime))
+                        resultados.append(
+                            validate_type(values.get(value), 
+                            self.tipos[i], datetime))
                     else:
-                        resultados.append(validate_type(values.get(value), self.tipos[i]))
+                        resultados.append(
+                            validate_type(values.get(value), 
+                            self.tipos[i]))
                     i += 1  
             
 
-            if type(resultados[0]) == tuple or type(resultados[1]) == tuple or type(resultados[3]) == tuple:
+            if (type(resultados[0]) == tuple 
+                or type(resultados[1]) == tuple 
+                or type(resultados[3]) == tuple):
+                
                 alert_message = ''
 
                 for valor in resultados:
