@@ -6,9 +6,11 @@ class MenuIniciar(MenuTemplate):
         super(MenuIniciar, self).__init__()
         title = 'Expense Tracker'
         layout = [
-            [sg.Button('Adicionar Despesa')],
-            [sg.Button('Remover Depesa')],
-            [sg.Button('Consultar Despesas')]
+            [sg.Button('Adicionar Despesa', size=(20,1))],
+            [sg.Button('Remover Depesa', size=(20,1))],
+            [sg.Button('Consultar Despesas', size=(20,1))],
+            [sg.Button('Histórico', size=(20,1))],
+            [sg.Button('Sair', size=(20,1))]
         ]
         self.choice = 0
 
@@ -29,6 +31,12 @@ class MenuIniciar(MenuTemplate):
 
         if event == 'Consultar Despesas':
             self.choice = 3
+
+        if event == 'Histórico':
+            self.choice = 4
+
+        if event == 'Sair':
+            self.choice = -1
 
         if self.choice != 0:
             self.running = False

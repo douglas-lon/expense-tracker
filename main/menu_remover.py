@@ -58,11 +58,17 @@ class MenuRemoverResultado(MenuTemplate):
         title = 'Resultados'
 
         self.nomes = nome
-        nomes_layout = self.create_nomes_layout(nome)
-        layout = [
-            [sg.Text('Contas em aberto com esse nome: ')],
-            nomes_layout
-        ]
+        if self.nomes:
+            nomes_layout = self.create_nomes_layout(nome)
+            layout = [
+                [sg.Text('Contas em aberto com esse nome: ')],
+                nomes_layout
+            ]
+        else:
+            layout = [
+                [sg.Text('Não há nenhuma conta em aberto com esse nome!')],
+                [sg.Button('Menu Iniciar')]
+            ]
 
         self.value = ''
         self.choice = 2
@@ -76,7 +82,11 @@ class MenuRemoverResultado(MenuTemplate):
             self.choice = -1
 
         if event != sg.WIN_CLOSED:
-            self.value = self.nomes[int(event)]
+            if event == 'Menu Iniciar':
+                self.choice = 0
+            else:
+                self.value = self.nomes[int(event)]
+            
             self.running = False
         
 

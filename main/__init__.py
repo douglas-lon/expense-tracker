@@ -1,5 +1,6 @@
 from menu_iniciar import MenuIniciar
 from menu_adicionar import MenuAdicionar
+from menu_historico import MenuHistorico
 from menu_remover import (MenuRemoverPesquisa, 
                           MenuRemoverResultado,
                           MenuRemoverConta)
@@ -48,15 +49,21 @@ def runMain(eng, ses):
                 choice = mrr.take_choice()
                 if choice < 0:
                     break
+                if choice == 0:
+                    continue
                 
                 # Menu para pagar a conta escolhida
                 mrc = MenuRemoverConta(conta, ses)
                 mrc.run(mrc.window)
                 choice = mrc.take_choice()
             case 3:
-                mc = MenuConsultar()
+                mc = MenuConsultar(ses)
                 mc.run(mc.window)
                 choice = mc.take_choice()
+            case 4:
+                mh = MenuHistorico(ses)
+                mh.run(mh.window)
+                choice = mh.take_choice()
             case _:
                 break
     
