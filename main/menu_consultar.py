@@ -1,6 +1,6 @@
-from menu_template import MenuTemplate
+from main.menu_template import MenuTemplate
 import PySimpleGUI as sg
-from models import ContaMudanca
+from main.models import ContaMudanca
 
 class MenuConsultar(MenuTemplate):
     def __init__(self, session):
@@ -43,8 +43,6 @@ class MenuConsultar(MenuTemplate):
             
         return layout
 
-    def take_choice(self):
-        return self.choice
 
 if __name__ == '__main__':
     m = MenuConsultar()

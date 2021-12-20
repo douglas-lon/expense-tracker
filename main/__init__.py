@@ -1,14 +1,12 @@
-from menu_iniciar import MenuIniciar
-from menu_adicionar import MenuAdicionar
-from menu_historico import MenuHistorico
-from menu_remover import (MenuRemoverPesquisa, 
-                          MenuRemoverResultado,
-                          MenuRemoverConta)
-from menu_consultar import MenuConsultar
-
-from sqlalchemy import (create_engine, 
-                        Column, Integer, 
-                        String)
+from main.menu_iniciar import MenuIniciar
+from main.menu_adicionar import MenuAdicionar
+from main.menu_historico import MenuHistorico
+from main.menu_remover import (MenuRemoverPesquisa, 
+                               MenuRemoverResultado,
+                               MenuRemoverConta)
+from main.menu_consultar import MenuConsultar
+from main.menu_enum import MenuNames
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
@@ -19,24 +17,24 @@ session = Session()
 
 def runMain(eng, ses):
     choice = 0
-
     while True:
         
         match choice:
-            case 0:
+            case MenuNames.Iniciar.value:
                 mi = MenuIniciar()
-                mi.run(mi.window)
-                choice = mi.take_choice()
-            case 1:
+                choice = mi.run(mi.window)
+
+
+            case MenuNames.Adicionar.value:
                 ma = MenuAdicionar(ses)
-                ma.run(ma.window)
-                choice = ma.take_choice()
-            case 2:
+                choice = ma.run(ma.window)
+
+
+            case MenuNames.Remover.value:
                 # Inicia com o menu de pesquisa
                 mrp = MenuRemoverPesquisa(ses)
-                mrp.run(mrp.window)
+                choice = mrp.run(mrp.window)
                 name = mrp.take_name()
-                choice = mrp.take_choice()
                 if choice < 0:
                     break
                 if choice == 0:
@@ -44,9 +42,8 @@ def runMain(eng, ses):
 
                 # Vai para o menu de resultados
                 mrr = MenuRemoverResultado(name)
-                mrr.run(mrr.window)
+                choice = mrr.run(mrr.window)
                 conta = mrr.take_expense()
-                choice = mrr.take_choice()
                 if choice < 0:
                     break
                 if choice == 0:
@@ -54,18 +51,19 @@ def runMain(eng, ses):
                 
                 # Menu para pagar a conta escolhida
                 mrc = MenuRemoverConta(conta, ses)
-                mrc.run(mrc.window)
-                choice = mrc.take_choice()
-            case 3:
+                choice = mrc.run(mrc.window)
+
+            case MenuNames.Consultar.value:
                 mc = MenuConsultar(ses)
-                mc.run(mc.window)
-                choice = mc.take_choice()
-            case 4:
+                choice = mc.run(mc.window)
+
+            case MenuNames.Historico.value:
                 mh = MenuHistorico(ses)
-                mh.run(mh.window)
-                choice = mh.take_choice()
+                choice = mh.run(mh.window)
+
             case _:
                 break
+    
     
     ses.close()
     eng.dispose()

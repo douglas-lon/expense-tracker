@@ -1,4 +1,4 @@
-from menu_template import MenuTemplate
+from main.menu_template import MenuTemplate
 import PySimpleGUI as sg
 
 class MenuIniciar(MenuTemplate):

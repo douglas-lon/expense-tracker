@@ -7,10 +7,12 @@ class MenuTemplate:
     
     def __init__(self):
         self.running = True
+        self.choice = 0
 
     def run(self, window):
         self.events()
         window.close()
+        return self.choice
 
     def events(self):
         while self.running:

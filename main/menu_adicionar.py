@@ -1,14 +1,15 @@
-from threading import local
-from menu_template import MenuTemplate
+from main.menu_template import MenuTemplate
 import PySimpleGUI as sg
-from utils import validate_type
+from main.utils import validate_type
 from datetime import datetime, date
-from models import ContaOriginal, ContaMudanca
+from main.models import ContaOriginal, ContaMudanca
 
 class MenuAdicionar(MenuTemplate):
     def __init__(self, session):
         super(MenuAdicionar, self).__init__()
+
         title = 'Adicionar Despesa'
+
         layout = [
             [sg.Text('Nome: ', size=(12,1)), sg.InputText(key='nome')],
             [sg.Text('Valor: ', size=(12,1)), sg.Input(key='valor')],
@@ -106,9 +107,6 @@ class MenuAdicionar(MenuTemplate):
         if self.choice != 1:
             self.running = False
 
-
-    def take_choice(self):
-        return self.choice
 
 if __name__ == '__main__':
     m = MenuAdicionar()

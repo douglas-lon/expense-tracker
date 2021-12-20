@@ -1,6 +1,6 @@
-from menu_template import MenuTemplate
+from main.menu_template import MenuTemplate
 import PySimpleGUI as sg
-from models import ContaHistorico, ContaOriginal
+from main.models import ContaHistorico, ContaOriginal
 
 class MenuHistorico(MenuTemplate):
     def __init__(self, session):
@@ -11,6 +11,7 @@ class MenuHistorico(MenuTemplate):
 
         historico_contas = self.create_layout(ContaOriginal)
         historico_parcelas = self.create_layout(ContaHistorico)
+
         layout = [
             [sg.Text('Histórico de Compras', pad=((150, 10),(5,5))), sg.Text('Parcelas Pagas', pad=((300, 10),(5,5)))],
             [   
@@ -55,8 +56,6 @@ class MenuHistorico(MenuTemplate):
             
         return layout
 
-    def take_choice(self):
-        return self.choice
 
 if __name__ == '__main__':
     m = MenuHistorico()

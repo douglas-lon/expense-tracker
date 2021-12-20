@@ -1,7 +1,7 @@
-from menu_template import MenuTemplate
+from main.menu_template import MenuTemplate
 import PySimpleGUI as sg
-from models import ContaOriginal, ContaMudanca, ContaHistorico
-from utils import validate_type
+from main.models import ContaOriginal, ContaMudanca, ContaHistorico
+from main.utils import validate_type
 from datetime import date
 
 class MenuRemoverPesquisa(MenuTemplate):
@@ -222,8 +222,6 @@ class MenuRemoverConta(MenuTemplate):
             self.running = False
 
 
-    def take_choice(self):
-        return self.choice
 
 if __name__ == '__main__':
     m = MenuRemoverConta('Nome do Rennan')
