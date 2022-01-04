@@ -8,10 +8,12 @@ from main.menu_consultar import MenuConsultar
 from main.menu_enum import MenuNames
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import os
 
 
-
-engine = create_engine('sqlite:///main/lite.db', echo=True)
+path = os.path.dirname(os.path.abspath(__file__))
+print(path)
+engine = create_engine(f'sqlite:///{path}/lite.db', echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 
